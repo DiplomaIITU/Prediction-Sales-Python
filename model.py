@@ -36,10 +36,12 @@ for month in sales_dataset['date']:
 for year in sales_dataset['date']:
     years.append(year.year)
 
-
 sales_dataset['day'] = days
 sales_dataset['month'] = months
 sales_dataset['year'] = years
+sales_dataset['year']= sales_dataset['year'].map(lambda x:2020 if x==2013 else x)
+sales_dataset['year']= sales_dataset['year'].map(lambda x:2021 if x==2014 else x)
+sales_dataset['year']= sales_dataset['year'].map(lambda x:2022 if x==2015 else x) 
 
 sales_dataset = sales_dataset[sales_dataset['item_price'] < 100000]
 sales_dataset = sales_dataset[sales_dataset['item_cnt_day'] < 1200]
@@ -115,20 +117,14 @@ X_train = sales_train_new.drop(33, axis=1)
 y_train = sales_train_new[32]
 
 
-
-# deleting the column so that it can predict the future sales data
-# X_test = sales_train_new.drop(0, axis=1)
-# y_test = sales_train_new[33]
-
 lasso = Lasso()
-# Instantiate the model
+# # Instantiate the model
 alpha = 0.0001
 lasso = Lasso(alpha=alpha)
 
 classifier=lasso
 
-# Fit the model
+# # Fit the model
 classifier.fit(X_train, y_train)
-
 # Make pickle file of our model
 pickle.dump(classifier, open("model.pkl", "wb"))
