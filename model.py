@@ -115,20 +115,40 @@ X_train = sales_train_new.drop(33, axis=1)
 y_train = sales_train_new[32]
 
 
+# X_valid = sales_train_new.drop(33, axis=1)
+# y_valid = sales_train_new[32]
 
 # deleting the column so that it can predict the future sales data
 # X_test = sales_train_new.drop(0, axis=1)
 # y_test = sales_train_new[33]
 
 lasso = Lasso()
-# Instantiate the model
+# # Instantiate the model
 alpha = 0.0001
 lasso = Lasso(alpha=alpha)
 
 classifier=lasso
 
-# Fit the model
+# # Fit the model
 classifier.fit(X_train, y_train)
+# from xgboost import XGBRegressor
+# model = XGBRegressor(
+#     max_depth=10,
+#     n_estimators=30,
+#     min_child_weight=0.5, 
+#     colsample_bytree=0.8, 
+#     subsample=0.8, 
+#     eta=0.1,
+# #     tree_method='gpu_hist',
+#     seed=42)
+
+# model.fit(
+#     X_train, 
+#     y_train, 
+#     eval_metric="rmse", 
+#     eval_set=[(X_train, y_train),(X_valid,y_valid)], 
+#     verbose=True, 
+#     early_stopping_rounds = 20)
 
 # Make pickle file of our model
 pickle.dump(classifier, open("model.pkl", "wb"))

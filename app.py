@@ -1,5 +1,5 @@
 import numpy
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 import pickle
 import pandas as pd
 from pre import FeatureExtractor
@@ -14,7 +14,7 @@ model = pickle.load(open("model.pkl", "rb"))
 def predict():
     json=request.json
     query_df=pd.DataFrame(json)
-    d=FeatureExtractor(query_df,'item_categories.csv','items.csv','shops.csv','sales_train.csv')
+    d=FeatureExtractor(query_df,'for_pre.csv')
     prediction = list(model.predict(d.transforms()))
     return jsonify({'Predicted - >':prediction})
 
