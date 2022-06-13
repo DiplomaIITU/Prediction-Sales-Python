@@ -1,7 +1,5 @@
 import pandas as pd
 import numpy as np
-import pickle
-from sklearn.linear_model import Lasso
 
 sales_item_category=pd.read_csv('item_categories.csv')
 sales_item=pd.read_csv('items.csv')
@@ -107,4 +105,4 @@ sales_dataset = sales_dataset[sales_dataset['item_id'].isin(sales_test['item_id'
 sales_train_new = sales_dataset.copy()
 
 sales_train_new = sales_train_new.pivot_table(index=['item_id','shop_id'], columns = 'date_block_num', values = 'item_cnt_month', fill_value = 0).reset_index()
-sales_train_new.to_csv('pre.csv',index=False)
+sales_train_new.to_csv('ker.csv',index=False)

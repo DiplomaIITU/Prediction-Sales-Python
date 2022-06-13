@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 class FeatureExtractor():
-    def __init__(self,query_df,train_pre='for_pre.csv') -> None:
+    def __init__(self,query_df,train_pre='ker.csv') -> None:
         self.jarr=query_df
         self.train_pre=pd.read_csv(train_pre)
         return None
