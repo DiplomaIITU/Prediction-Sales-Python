@@ -39,9 +39,7 @@ for year in sales_dataset['date']:
 sales_dataset['day'] = days
 sales_dataset['month'] = months
 sales_dataset['year'] = years
-sales_dataset['year']= sales_dataset['year'].map(lambda x:2020 if x==2013 else x)
-sales_dataset['year']= sales_dataset['year'].map(lambda x:2021 if x==2014 else x)
-sales_dataset['year']= sales_dataset['year'].map(lambda x:2022 if x==2015 else x) 
+
 
 sales_dataset = sales_dataset[sales_dataset['item_price'] < 100000]
 sales_dataset = sales_dataset[sales_dataset['item_cnt_day'] < 1200]
